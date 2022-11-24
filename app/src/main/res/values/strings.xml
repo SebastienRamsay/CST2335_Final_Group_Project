@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CST2335 Final Group Project</string>
+    <string name="searchButton">Search</string>
+    <string name="eventSearchText">Event Search</string>
 </resources>
