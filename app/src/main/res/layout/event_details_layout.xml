@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/urlTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        android:textSize="32dp"
+        app:layout_constraintStart_toStartOf="@+id/ticketPriceRangeTextView"
+        app:layout_constraintTop_toBottomOf="@+id/ticketPriceRangeTextView" />
+
+    <TextView
+        android:id="@+id/ticketPriceRangeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Ticket Price Range"
+        android:textSize="32dp"
+        app:layout_constraintStart_toStartOf="@+id/eventStartingDateTextView"
+        app:layout_constraintTop_toBottomOf="@+id/eventStartingDateTextView" />
+
+    <TextView
+        android:id="@+id/eventNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="Name"
+        android:textSize="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/eventStartingDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Starting Date"
+        android:textSize="32dp"
+        app:layout_constraintStart_toStartOf="@+id/eventNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/eventNameTextView" />
+
+    <ImageView
+        android:id="@+id/promotionalImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="@+id/urlTextView"
+        app:layout_constraintTop_toBottomOf="@+id/urlTextView"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <CheckBox
+        android:id="@+id/favouriteCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Favourite"
+        app:layout_constraintStart_toStartOf="@+id/promotionalImageView"
+        app:layout_constraintTop_toBottomOf="@+id/promotionalImageView" />
+</androidx.constraintlayout.widget.ConstraintLayout>

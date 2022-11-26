@@ -17,10 +17,11 @@ import java.util.ArrayList;
 public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
 
     private ArrayList<EventJSON._Embedded.Event> events;
+    private EventViewModel eventModel;
 
-
-    public Adapter(ArrayList<EventJSON._Embedded.Event> events) {
+    public Adapter(ArrayList<EventJSON._Embedded.Event> events, EventViewModel eventModel) {
         this.events = events;
+        this.eventModel = eventModel;
     }
 
 
@@ -51,6 +52,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
+
+            itemView.setOnClickListener(click ->{
+
+                int position = getAbsoluteAdapterPosition();
+                EventJSON._Embedded.Event selected = events.get(position);
+                eventModel.selectedEvent.postValue(selected);
+
+            });
 
             eventName = itemView.findViewById(R.id.eventName);
         }

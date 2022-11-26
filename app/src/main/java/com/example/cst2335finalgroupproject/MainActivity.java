@@ -2,9 +2,12 @@ package com.example.cst2335finalgroupproject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,10 +38,12 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
+    EventViewModel eventModel;
     Adapter myAdapter;
     EventJSON embeddedEvents;
     ArrayList<EventJSON._Embedded.Event> events = new ArrayList<>();
     LinearLayoutManager layoutManager;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +53,48 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        eventModel = new ViewModelProvider(this).get(EventViewModel.class);
+
+        prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+
+        binding.cityEditText.setText(eventModel.lastCitySearched.getValue());
+        binding.radiusEditText.setText(eventModel.lastRadiusSearched.getValue());
+
+        String storedCitySearched = prefs.getString("lastCitySearched", "");
+        String storedRadiusSearched = prefs.getString("lastRadiusSearched", "");
+        binding.cityEditText.setText(storedCitySearched);
+        binding.radiusEditText.setText(storedRadiusSearched);
+
+
+
         layoutManager = new LinearLayoutManager(this);
         binding.eventRecyclerView.setLayoutManager(layoutManager);
-        myAdapter = new Adapter(events);
+        myAdapter = new Adapter(events, eventModel);
         binding.eventRecyclerView.setAdapter(myAdapter);
 
         binding.searchButton.setOnClickListener(click ->{
             events.clear();
             fetchEvents();
+
+            eventModel.lastCitySearched.setValue(binding.cityEditText.getText().toString());
+            eventModel.lastRadiusSearched.setValue(binding.radiusEditText.getText().toString());
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("lastRadiusSearched", binding.radiusEditText.getText().toString());
+            editor.putString("lastCitySearched", binding.cityEditText.getText().toString());
+            editor.apply();
+        });
+
+
+        eventModel.selectedEvent.observe(this, (newEventValue) -> {
+
+
+            EventDetailsFragment eventFragment = new EventDetailsFragment( newEventValue );
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.eventFrameLayout, eventFragment)
+                    .commit();
+
         });
 
 
