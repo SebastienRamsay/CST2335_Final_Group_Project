@@ -4,6 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/jay90/AndroidStudioProjects/SoccerMatch/app/src/main/res/layout/soccer_layout.xml" value="0.20199275362318841" />
+        <entry key="..\:/Users/jay90/AndroidStudioProjects/SoccerMatch/app/src/main/res/layout/soccer_schedule_fragment.xml" value="0.21240942028985507" />
+        <entry key="..\:/Users/jay90/AndroidStudioProjects/SoccerMatch/app/src/main/res/layout/soccereventfragment.xml" value="0.21240942028985507" />
+        <entry key="..\:/Users/jay90/AndroidStudioProjects/SoccerMatch/app/src/main/res/layout/teamlayout.xml" value="0.21240942028985507" />
+        <entry key="..\:/Users/jay90/AndroidStudioProjects/SoccerMatch/app/src/main/res/layout/watch_match.xml" value="0.2453125" />
+        <entry key="..\:/Users/jay90/AndroidStudioProjects/SoccerMatch/app/src/main/res/layout/watchmatch.xml" value="0.21240942028985507" />
       </map>
     </option>
   </component>
