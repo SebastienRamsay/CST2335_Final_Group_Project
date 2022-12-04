@@ -4,22 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/watch"
+    <ListView
+        android:id="@+id/soccerList"
         android:layout_width="match_parent"
-        android:layout_height="785dp">
-
-        <ListView
-            android:id="@+id/live_soccermatch"
-            android:layout_width="wrap_content"
-            android:layout_height="801dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="49dp">
-
-        </ListView>
-    </FrameLayout>
+        android:layout_height="799dp" />
 
     <GridLayout
         android:id="@+id/action_bottom"
