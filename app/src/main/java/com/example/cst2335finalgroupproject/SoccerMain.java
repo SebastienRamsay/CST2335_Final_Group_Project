@@ -1,48 +1,31 @@
 package com.example.cst2335finalgroupproject;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.cst2335finalgroupproject.databinding.WatchmatchlayoutBinding;
+import com.example.cst2335finalgroupproject.databinding.TeamLayoutBinding;
 import com.example.cst2335finalgroupproject.databinding.SoccerLayoutBinding;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.Gson;
 
-import org.json.JSONObject;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SoccerMain extends AppCompatActivity {
-
+    TeamLayoutBinding binding2;
     SoccerLayoutBinding binding;
     SoccerViewModel soccerModel;
     SoccerAdaptor myAdapter;
@@ -69,7 +52,10 @@ public class SoccerMain extends AppCompatActivity {
         binding.inputTeam.setText(storedteamsearched);
 
         layoutManager = new LinearLayoutManager(this);
+        binding.soccerlist.setLayoutManager(layoutManager);
+
         myAdapter = new SoccerAdaptor(titles, soccerModel);
+        binding.soccerlist.setAdapter(myAdapter);
 
         binding.search.setOnClickListener(click ->{
             titles.clear();
@@ -88,9 +74,10 @@ public class SoccerMain extends AppCompatActivity {
     }
 
     private void fetchEvents() {
-        RetrofitClient
+        System.out.println("hjhjjhjjh");
+        SoccerRetrofitClient
                 .getRetrofitClient()
-                .getEmbededTitle("https://www.scorebat.com/live-stream/"+ binding.inputTeam.getText() )
+                .getEmbededTitle("https://www.scorebat.com/video-api/v3/competition/" + binding.inputTeam.getText().toString() + "-premier-league/?token=Mzg5NDNfMTY3MDI4MjEyNF8yYzc1NjY2ODcwMGU1ZWE3YjM2OGEyYjM5Nzk4MjY0Yjc4Y2ZmOGZl" )
                 .enqueue(new Callback<ListJSON>() {
                     @Override
                     public void onResponse(Call<ListJSON> call, Response<ListJSON> response) {

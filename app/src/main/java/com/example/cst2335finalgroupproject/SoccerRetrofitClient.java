@@ -3,9 +3,9 @@ package com.example.cst2335finalgroupproject;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitClient {
+public class SoccerRetrofitClient {
 
-    private static final String URL = "https://www.scorebat.com/video-api/v1/";
+    private static final String URL = "https://www.scorebat.com/";
     private static Retrofit retrofit = null;
 
     public static ApiClass getRetrofitClient(){

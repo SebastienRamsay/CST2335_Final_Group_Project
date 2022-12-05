@@ -4,11 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ListView
-        android:id="@+id/soccerList"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/soccerlist"
         android:layout_width="match_parent"
-        android:layout_height="799dp">
-    </ListView>
+        android:layout_height="683dp" />
 
     <GridLayout
         android:id="@+id/action_bottom"
