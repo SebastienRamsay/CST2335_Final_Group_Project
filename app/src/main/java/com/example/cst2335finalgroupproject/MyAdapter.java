@@ -61,7 +61,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         DataModel dataModel = dataModels.get(holder.getAdapterPosition());
         holder.myTextView.setText(dataModel.getPhotographer());
         // assign the image link to the ImageView
-        // if statement: check if user is visiting the MainActivity or SavedItemsActivity
+        // if statement: check if user is visiting the PexelsMainActivity or SavedItemsActivity
         if (dataModels.get(holder.getAdapterPosition()).getSmallImageUrl() == null) {
             // giving the image link to Glide to show it on the screen
             // .load() load the image link on the screen

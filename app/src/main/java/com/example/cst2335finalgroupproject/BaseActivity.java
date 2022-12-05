@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.android.volley.BuildConfig;
 import com.google.android.material.navigation.NavigationView;
 
 /**
@@ -78,8 +77,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             // set toolbar title and application version to myToolbar
             myToolbar.setTitle(getString(R.string.title_saved_items_activity) + " v1 " + "Yiting Yao");
         }
-        // check if user is currently in MainActivity or not
-        else if (this instanceof MainActivity) {
+        // check if user is currently in PexelsMainActivity or not
+        else if (this instanceof PexelsMainActivity) {
             // set toolbar title and application version to myToolbar
             myToolbar.setTitle(getString(R.string.title_main_activity) + " v1 " + "Yiting Yao");
         }
@@ -93,11 +92,11 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         // check which item of navigation drawer is clicked
         switch (item.getItemId()) {
             case R.id.item_main:
-                // check if user is currently in MainActivity or not
-                if (!(this instanceof MainActivity)) {
-                    // create intent for MainActivity
-                    Intent intent1 = new Intent(this, MainActivity.class);
-                    // start MainActivity
+                // check if user is currently in PexelsMainActivity or not
+                if (!(this instanceof PexelsMainActivity)) {
+                    // create intent for PexelsMainActivity
+                    Intent intent1 = new Intent(this, PexelsMainActivity.class);
+                    // start PexelsMainActivity
                     startActivity(intent1);
                 }
                 break;
@@ -125,8 +124,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         // check which item of toolbar icon is clicked
         switch (item.getItemId()) {
             case R.id.menu1:
-                // check if user is currently in MainActivity or not
-                if (this instanceof MainActivity) {
+                // check if user is currently in PexelsMainActivity or not
+                if (this instanceof PexelsMainActivity) {
                     // create an alert dialog
                     new AlertDialog.Builder(this)
                             // set title for AlertDialog

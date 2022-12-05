@@ -8,14 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.BuildConfig;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -35,10 +33,10 @@ import java.util.Map;
 /*
 * this is the main activity which will show the search results
  */
-public class MainActivity extends BaseActivity implements ItemListener {
+public class PexelsMainActivity extends BaseActivity implements ItemListener {
 
     // a variable for log tag of main activity
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "PexelsMainActivity";
     // a variable which store the pexels search url
     public static final String URL_SEARCH = "https://api.pexels.com/v1/search?query=";
     // a variable which store the api key of the pexels' api
