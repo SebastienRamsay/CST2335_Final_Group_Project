@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Pexels App</string>
+    <string name="open" translatable="false">ouverte</string>
+    <string name="close" translatable="false">proche</string>
+    <string name="info_main_activity">Dans cette activité, vous pouvez rechercher et cliquer sur n\'importe quel élément.</string>
+    <string name="info_saved_items">Dans cette activité, vous pouvez voir et supprimer vos éléments enregistrés.</string>
+    <string name="info_title">Informations sur l\'activité</string>
+    <string name="title_saved_items_activity">Activité des éléments enregistrés </string>
+    <string name="title_main_activity">Activité principale </string>
+    <string name="info">Info</string>
+    <string name="snackbar_close">CLOSE</string>
+    <string name="toast_image_saved">Image enregistrée!</string>
+    <string name="snackbar_image_deleted">Image supprimée!</string>
+    <string name="activity_main">Principale</string>
+    <string name="activity_saved_item">Articles enregistrés</string>
+    <string name="save">Enregistrer</string>
+    <string name="type_something_to_search">tapez quelque chose à rechercher!</string>
+    <string name="search">CHERCHER</string>
+</resources>

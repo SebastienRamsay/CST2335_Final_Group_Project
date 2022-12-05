@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">CST2335 Final Group Project</string>
+    <string name="app_name">PexelsApp</string>
+    <string name="open" translatable="false">open</string>
+    <string name="close" translatable="false">close</string>
+    <string name="info_main_activity">In the Main Activity you can search for and click on any of the images to see more details..</string>
+    <string name="info_saved_items">In the Saved Items Activity you can see and delete your saved images.</string>
+    <string name="info_title">Activity Info</string>
+    <string name="title_saved_items_activity">Saved Items Activity </string>
+    <string name="title_main_activity">Main Activity </string>
+    <string name="info">Info</string>
+    <string name="snackbar_close">CLOSE</string>
+    <string name="toast_image_saved">Image saved!</string>
+    <string name="snackbar_image_deleted">Image deleted!</string>
+    <string name="activity_main">Main</string>
+    <string name="activity_saved_item">Saved Items</string>
+    <string name="save">Save</string>
+    <string name="type_something_to_search">Type something to search!</string>
+    <string name="search">SEARCH</string>
 </resources>
