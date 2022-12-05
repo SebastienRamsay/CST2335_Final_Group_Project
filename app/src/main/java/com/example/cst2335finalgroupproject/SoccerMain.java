@@ -77,7 +77,7 @@ public class SoccerMain extends AppCompatActivity {
         System.out.println("hjhjjhjkdkdkdh");
         SoccerRetrofitClient
                 .getRetrofitClient()
-                .getEmbededTitle("https://www.scorebat.com/video-api/v3/competition/" + binding.inputTeam.getText().toString() + "-premier-league/?token=Mzg5NDNfMTY3MDI4MjEyNF8yYzc1NjY2ODcwMGU1ZWE3YjM2OGEyYjM5Nzk4MjY0Yjc4Y2ZmOGZl" )
+                .getEmbededTitle("https://www.scorebat.com/video-api/v1/competition/" + binding.inputTeam.getText().toString() + "-premier-league/?token=Mzg5NDNfMTY3MDI4MjEyNF8yYzc1NjY2ODcwMGU1ZWE3YjM2OGEyYjM5Nzk4MjY0Yjc4Y2ZmOGZl" )
                 .enqueue(new Callback<ListJSON>() {
                     @Override
                     public void onResponse(Call<ListJSON> call, Response<ListJSON> response) {
