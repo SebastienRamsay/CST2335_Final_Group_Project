@@ -18,6 +18,8 @@ import java.util.ArrayList;
 
 /*
 this class handle the recyclerView
+this is the class that handle the scrolling up/down of the recyclerView
+recyclerView actually is your list of dataModels
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 

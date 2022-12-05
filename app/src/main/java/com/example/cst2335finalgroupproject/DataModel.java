@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 /*
 * this data is retrieved from Volley, we need to define these data types to use it in the UI
+* this class encapsulates each of the image attributes into a datamodel object
+* Parcelable makes it possible to transfer a datamodel to a fragment
  */
 public class DataModel implements Parcelable {
 
