@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/SoccerMain"
+        android:icon="@android:drawable/arrow_up_float"
+        android:title="SoccerMain"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/PexelsMainActivity"
+        android:icon="@android:drawable/arrow_down_float"
+        android:title="PexelsMainActivity"
+        app:showAsAction="always" />
+</menu>

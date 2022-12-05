@@ -1,48 +1,32 @@
 package com.example.cst2335finalgroupproject;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.cst2335finalgroupproject.databinding.ActivityMainBinding;
-import com.example.cst2335finalgroupproject.databinding.EventBinding;
-import com.google.gson.Gson;
 
-import org.json.JSONObject;
-
-import java.lang.reflect.Array;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class EventSearchMain extends AppCompatActivity {
 
     ActivityMainBinding binding;
     EventViewModel eventModel;
@@ -58,7 +42,35 @@ public class MainActivity extends AppCompatActivity {
     Bundle savedInstanceState;
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
+        getMenuInflater().inflate(R.menu.my_menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        Intent switchActivityIntent = new Intent();
+
+        switch(item.getItemId()){
+            case R.id.SoccerMain:
+                switchActivityIntent = new Intent(this, SoccerMain.class);
+                startActivity(switchActivityIntent);
+                break;
+            case R.id.PexelsMainActivity:
+                switchActivityIntent = new Intent(this, PexelsMainActivity.class);
+                startActivity(switchActivityIntent);
+                break;
+            default:
+                switchActivityIntent = new Intent(this, EventSearchMain.class);
+                startActivity(switchActivityIntent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
 
         EventDatabase db = Room.databaseBuilder(getApplicationContext(), EventDatabase.class, "EventDatabase").allowMainThreadQueries().build();
         EventDAO eventDAO = db.eventDAO();
+
+        setSupportActionBar(binding.toolBar);
+
+
 
         try{
             eventModel.favouriteEvents.setValue(eventDAO.getAllEvents());
@@ -112,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             editor.putString("lastRadiusSearched", binding.radiusEditText.getText().toString());
             editor.putString("lastCitySearched", binding.cityEditText.getText().toString());
             editor.apply();
-            hideSoftKeyboard(MainActivity.this, click);
+            hideSoftKeyboard(EventSearchMain.this, click);
         });
 
 
@@ -229,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<EventJSON> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(EventSearchMain.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 System.out.println(t.getCause() +  "\n" + t.getClass());
             }
         });
