@@ -1,175 +1,109 @@
 package com.example.cst2335finalgroupproject;
 
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.app.ListActivity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.cst2335finalgroupproject.databinding.WatchmatchlayoutBinding;
+import com.example.cst2335finalgroupproject.databinding.SoccerLayoutBinding;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
-import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SoccerMain extends AppCompatActivity {
-    public static final String ACTIVITY_NAME = "Soccer_List";
-    //Some url endpoint that you may have
-    String myUrl = " https://www.scorebat.com/video-api/v1/";
-    BaseAdapter myAdapter;
-    private ArrayList<SoccerObject> soccerList = new ArrayList<>();
-    JSONObject resp;
+
+    SoccerLayoutBinding binding;
+    SoccerViewModel soccerModel;
+    SoccerAdaptor myAdapter;
+    ListJSON embeddedMatches;
+    ArrayList<ListJSON._Embedded.Title> titles = new ArrayList<>();
+    LinearLayoutManager layoutManager;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.soccer_layout);
-        ListView theList = findViewById(R.id.soccerList);
-        theList.setAdapter(myAdapter = new SoccerAdaptor(this, soccerList));
 
-        Button btn_search = findViewById(R.id.search);
-        btn_search.setOnClickListener(clik ->
-        {
-            try {
-                soccerList.clear();
-                CurrencyService getRequest = new CurrencyService();
-                EditText edt = (EditText) findViewById(R.id.input_team);
-                resp = getRequest.execute(myUrl + edt.getText().toString().toUpperCase()).get();
-                for (Iterator<String> iter = resp.keys(); iter.hasNext(); ) {
-                    String key = iter.next();
-                    soccerList.add(new SoccerObject(key, resp.getString(key), edt.getText().toString().toUpperCase()));
-                }
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            myAdapter.notifyDataSetChanged();
+        binding = SoccerLayoutBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        soccerModel = new ViewModelProvider(this).get(SoccerViewModel.class);
+
+        prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
+
+        binding.inputTeam.setText(soccerModel.laatteamsearched.getValue());
+
+        String storedteamsearched = prefs.getString("laatteamsearched", "");
+        binding.inputTeam.setText(storedteamsearched);
+
+        layoutManager = new LinearLayoutManager(this);
+        myAdapter = new SoccerAdaptor(titles, soccerModel);
+
+        binding.search.setOnClickListener(click ->{
+            titles.clear();
+            fetchEvents();
+            soccerModel.laatteamsearched.setValue(binding.inputTeam.getText().toString());
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("laatteamsearched", binding.inputTeam.getText().toString());
+            editor.apply();
+
+        });
+
+        soccerModel.selectedmatch.observe(this, (newListValue) -> {
+            SoccerwatchFragment soccerwatchFragment = new SoccerwatchFragment( newListValue );
+            getSupportFragmentManager().beginTransaction().add(R.id.watchmatch, soccerwatchFragment).commit();
         });
     }
 
-    // Function to convert ArrayList<String> to String[]
-    public String[] getStringArray(ArrayList<String> arr) {
-
-        // Convert ArrayList to object array
-        Object[] objArr = arr.toArray();
-
-        // convert Object array to String array
-        String[] str = Arrays
-                .copyOf(objArr, objArr
-                                .length,
-                        String[].class);
-
-        return str;
+    private void fetchEvents() {
+        RetrofitClient
+                .getRetrofitClient()
+                .getEmbededTitle("https://www.scorebat.com/live-stream/"+ binding.inputTeam.getText() )
+                .enqueue(new Callback<ListJSON>() {
+                    @Override
+                    public void onResponse(Call<ListJSON> call, Response<ListJSON> response) {
+                        if (response.isSuccessful() && response.body() != null){
+                            embeddedMatches = response.body();
+                            titles.addAll(embeddedMatches.get_embedded().getTitles());
+                            myAdapter.notifyDataSetChanged();
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<ListJSON> call, Throwable t) {
+                        Toast.makeText(SoccerMain.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.e(ACTIVITY_NAME, "In Function onResume()");
-    }
-
-    @Override
-    protected void onDestroy() {
-        Log.e(ACTIVITY_NAME, "In Function onDestroy()");
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onStart() {
-        Log.e(ACTIVITY_NAME, "In Function onStart()");
-        super.onStart();
-    }
-
-    @Override
-    protected void onPause() {
-        Log.e(ACTIVITY_NAME, "In Function onPause()");
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        Log.e(ACTIVITY_NAME, "In Function onStop()");
-        super.onStop();
-    }
-
-
-    public class CurrencyService extends AsyncTask<String, Void, JSONObject> {
-        public static final String REQUEST_METHOD = "GET";
-        public static final int READ_TIMEOUT = 15000;
-        public static final int CONNECTION_TIMEOUT = 15000;
-        ProgressDialog p;
-
-
-
-        @Override
-        protected JSONObject doInBackground(String... params) {
-            String stringUrl = params[0];
-            JSONObject result;
-            String inputLine;
-            try {
-                //Create a URL object holding our url
-                URL myUrl = new URL(stringUrl);
-                //Create a connection
-                HttpURLConnection connection = (HttpURLConnection)
-                        myUrl.openConnection();
-                //Set methods and timeouts
-                connection.setRequestMethod(REQUEST_METHOD);
-                connection.setReadTimeout(READ_TIMEOUT);
-                connection.setConnectTimeout(CONNECTION_TIMEOUT);
-
-                //Connect to our url
-                connection.connect();
-                //Create a new InputStreamReader
-                InputStreamReader streamReader = new
-                        InputStreamReader(connection.getInputStream());
-                //Create a new buffered reader and String Builder
-                BufferedReader reader = new BufferedReader(streamReader);
-                StringBuilder stringBuilder = new StringBuilder();
-                //Check if the line we are reading is not null
-                while ((inputLine = reader.readLine()) != null) {
-                    stringBuilder.append(inputLine);
-                }
-                //Close our InputStream and Buffered reader
-                reader.close();
-                streamReader.close();
-                //Set our result equal to our stringBuilder
-                result = new JSONObject(stringBuilder.toString()).getJSONObject("rates");
-            } catch (IOException e) {
-                e.printStackTrace();
-                result = null;
-            } catch (JSONException e) {
-                e.printStackTrace();
-                result = null;
-            }
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(JSONObject jsonObject) {
-            super.onPostExecute(jsonObject);
-            Toast toast = Toast.makeText(getApplicationContext(), "Successful load currency", Toast.LENGTH_SHORT);
-            toast.show();
-            p.cancel();
-        }
-    }
-
 }
-

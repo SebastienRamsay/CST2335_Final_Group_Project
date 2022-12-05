@@ -4,14 +4,8 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/team1"
-        android:layout_width="200dp"
-        android:layout_height="49dp" />
-
-    <TextView
-        android:id="@+id/team2"
-        android:layout_width="193dp"
-        android:layout_height="48dp" />
-
+        android:id="@+id/matchname"
+        android:layout_width="match_parent"
+        android:layout_height="45dp" />
 
 </LinearLayout>

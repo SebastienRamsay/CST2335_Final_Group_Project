@@ -1,49 +1,66 @@
 package com.example.cst2335finalgroupproject;
 
-import android.app.Activity;
 import android.content.Context;
+import android.provider.CalendarContract;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.Adapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.cst2335finalgroupproject.R;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.cst2335finalgroupproject.databinding.TeamLayoutBinding;
 
 import java.util.ArrayList;
 
-public class SoccerAdaptor extends BaseAdapter {
-    private ArrayList<SoccerObject> soccerList;
-    private Context mContext;
+public class SoccerAdaptor extends RecyclerView.Adapter<SoccerAdaptor.viewHolder> {
 
-    public SoccerAdaptor(Context context, ArrayList<SoccerObject> soccerList) {
-        super();
-        this.mContext = context;
-        this.soccerList = soccerList;
+    private ArrayList<ListJSON._Embedded.Title> match;
+    private SoccerViewModel soccerModel;
+
+    public SoccerAdaptor(ArrayList<ListJSON._Embedded.Title> matches, SoccerViewModel soccerModel) {
+        this.match = matches;
+        this.soccerModel = soccerModel;
     }
 
-    public int getCount() {
-        return this.soccerList.size();
-    } //This function tells how many objects to show
+    @NonNull
+    @Override
+    public SoccerAdaptor.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-    public SoccerObject getItem(int position) {
-        return this.soccerList.get(position);
-    }  //This returns the string at position p
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.team_layout, parent, false);
 
-    public long getItemId(int p) {
-        return p;
-    } //This returns the database id of the item at position p
+        return new viewHolder(view);
+    }
 
-    public View getView(int p, View recycled, ViewGroup parent) {
-        View thisRow = recycled;
-        SoccerObject soccerObject = getItem(p);
-        thisRow = ((Activity) this.mContext).getLayoutInflater().inflate(R.layout.team_layout, null);
+    @Override
+    public void onBindViewHolder(@NonNull SoccerAdaptor.viewHolder holder, int position) {
+        holder.matchName.setText(match.get(position).getTitle());
+    }
 
-        TextView team1 = thisRow.findViewById(R.id.team1);
-        team1.setText(soccerObject.getSide1());
+    @Override
+    public int getItemCount() {
+        return match.size();
+    }
 
-        TextView team2 = thisRow.findViewById(R.id.team2);
-        team2.setText(soccerObject.getSide2());
+    public class viewHolder extends RecyclerView.ViewHolder {
 
-        return thisRow;
+        TextView matchName;
+
+        public viewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            itemView.setOnClickListener(click ->{
+
+                int position = getAbsoluteAdapterPosition();
+                ListJSON._Embedded.Title selected = match.get(position);
+                soccerModel.selectedmatch.postValue(selected);
+            });
+
+            matchName = itemView.findViewById(R.id.matchname);
+        }
     }
 }
