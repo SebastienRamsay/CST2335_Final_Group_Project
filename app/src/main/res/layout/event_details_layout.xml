@@ -3,63 +3,97 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/urlTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="TextView"
-        android:textSize="32dp"
-        app:layout_constraintStart_toStartOf="@+id/ticketPriceRangeTextView"
-        app:layout_constraintTop_toBottomOf="@+id/ticketPriceRangeTextView" />
-
-    <TextView
-        android:id="@+id/ticketPriceRangeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Ticket Price Range"
-        android:textSize="32dp"
-        app:layout_constraintStart_toStartOf="@+id/eventStartingDateTextView"
-        app:layout_constraintTop_toBottomOf="@+id/eventStartingDateTextView" />
-
-    <TextView
-        android:id="@+id/eventNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Name"
-        android:textSize="32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/eventStartingDateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Starting Date"
-        android:textSize="32dp"
-        app:layout_constraintStart_toStartOf="@+id/eventNameTextView"
-        app:layout_constraintTop_toBottomOf="@+id/eventNameTextView" />
-
-    <ImageView
-        android:id="@+id/promotionalImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:layout_constraintStart_toStartOf="@+id/urlTextView"
-        app:layout_constraintTop_toBottomOf="@+id/urlTextView"
-        tools:srcCompat="@tools:sample/avatars" />
+    android:layout_height="match_parent"
+    android:background="#6200ED">
 
     <CheckBox
         android:id="@+id/favouriteCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="Favourite"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="@+id/promotionalImageView"
         app:layout_constraintTop_toBottomOf="@+id/promotionalImageView" />
+
+    <TextView
+        android:id="@+id/eventStartingDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Starting Date"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/startingDateText"
+        app:layout_constraintTop_toBottomOf="@+id/startingDateText" />
+
+    <TextView
+        android:id="@+id/ticketPriceRangeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ticket Price Range"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/ticketPriceText"
+        app:layout_constraintTop_toBottomOf="@+id/ticketPriceText" />
+
+    <ImageView
+        android:id="@+id/promotionalImageView"
+        android:layout_width="348dp"
+        android:layout_height="186dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/urlButton"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/eventNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/NameText"
+        app:layout_constraintTop_toBottomOf="@+id/NameText" />
+
+    <Button
+        android:id="@+id/urlButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="32dp"
+        android:text="Buy Tickets"
+        app:layout_constraintStart_toStartOf="@+id/ticketPriceText"
+        app:layout_constraintTop_toBottomOf="@+id/ticketPriceText" />
+
+    <TextView
+        android:id="@+id/NameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="32dp"
+        android:text="Event Name: "
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/startingDateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="32dp"
+        android:text="Starting Date: "
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NameText" />
+
+    <TextView
+        android:id="@+id/ticketPriceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="Ticket Price: "
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startingDateText" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

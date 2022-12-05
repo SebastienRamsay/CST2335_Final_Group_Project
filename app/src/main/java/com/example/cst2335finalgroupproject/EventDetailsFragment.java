@@ -1,7 +1,8 @@
 package com.example.cst2335finalgroupproject;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,22 +11,20 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.room.Room;
 
-import com.example.cst2335finalgroupproject.databinding.EventBinding;
 import com.example.cst2335finalgroupproject.databinding.EventDetailsLayoutBinding;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.ArrayList;
 
 public class EventDetailsFragment extends Fragment {
 
 
     EventDetailsLayoutBinding binding;
-    EventJSON._Embedded.Event event;
+    EventDBObject event;
 
 
-    public EventDetailsFragment(EventJSON._Embedded.Event event) {
+    public EventDetailsFragment(EventDBObject event) {
         this.event = event;
     }
 
@@ -34,37 +33,50 @@ public class EventDetailsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
+        EventDatabase db = Room.databaseBuilder(inflater.getContext(), EventDatabase.class, "EventDatabase").allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        EventDAO eventDAO = db.eventDAO();
+
         binding = EventDetailsLayoutBinding.inflate(inflater);
 
         binding.eventNameTextView.setText(event.getName());
-        binding.eventStartingDateTextView.setText(event.getDates().getStart().getDateTime());
-//        binding.ticketPriceRangeTextView.setText();
-        binding.urlTextView.setText(event.getUrl());
-        binding.promotionalImageView.setImageBitmap(urlToBitmap(event.getImages().get(0).getUrl()));
+
+        binding.eventStartingDateTextView.setText(event.getDateTime());
+
+        String priceRange = event.getMin() + "-" + event.getMax();
+        binding.ticketPriceRangeTextView.setText(priceRange);
+
+        binding.urlButton.setOnClickListener(click -> {
+            Uri uri = Uri.parse(event.getUrl()); // missing 'http://' will cause crashed
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        });
+        new URLToImage(binding.promotionalImageView).execute(event.getImageURL());
+
+
+        if (eventDAO.getEvent(event.getUrl()) != null){
+            binding.favouriteCheckBox.setChecked(true);
+        }else{
+            binding.favouriteCheckBox.setChecked(false);
+        }
+
+
+
+        binding.favouriteCheckBox.setOnClickListener(click ->{
+
+
+            if (binding.favouriteCheckBox.isChecked()){
+
+                eventDAO.insertEvent(event);
+
+            }else{
+
+                eventDAO.deleteEvent(event);
+
+            }
+        });
+
 
         return binding.getRoot();
     }
 
-    public Bitmap urlToBitmap(String src){
-
-        try {
-
-            //uncomment below line in image name have spaces.
-            //src = src.replaceAll(" ", "%20");
-
-            URL url = new URL(src);
-
-
-
-            HttpURLConnection connection = (HttpURLConnection) url
-                    .openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            return myBitmap;
-        } catch (Exception e) {
-            return null;
-        }
-    }
 }

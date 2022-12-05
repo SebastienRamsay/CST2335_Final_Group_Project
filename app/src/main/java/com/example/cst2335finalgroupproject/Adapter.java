@@ -13,13 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cst2335finalgroupproject.databinding.EventBinding;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import okhttp3.internal.cache.InternalCache;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
 
-    private ArrayList<EventJSON._Embedded.Event> events;
+    private ArrayList<EventDBObject> events;
     private EventViewModel eventModel;
 
-    public Adapter(ArrayList<EventJSON._Embedded.Event> events, EventViewModel eventModel) {
+    public Adapter(ArrayList<EventDBObject> events, EventViewModel eventModel) {
         this.events = events;
         this.eventModel = eventModel;
     }
@@ -56,8 +59,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
             itemView.setOnClickListener(click ->{
 
                 int position = getAbsoluteAdapterPosition();
-                EventJSON._Embedded.Event selected = events.get(position);
-                eventModel.selectedEvent.postValue(selected);
+
+                eventModel.selectedEvent.postValue(events.get(position));
 
             });
 
