@@ -74,7 +74,7 @@ public class SoccerMain extends AppCompatActivity {
     }
 
     private void fetchEvents() {
-        System.out.println("hjhjjhjkdkdkdh");
+        System.out.println("hjhjjhjjjjkdkdkdh");
         SoccerRetrofitClient
                 .getRetrofitClient()
 //                .getEmbededTitle("https://www.scorebat.com/v1/competition/" + binding.inputTeam.getText().toString() + "-premier-league/?token=Mzg5NDNfMTY3MDI4MjEyNF8yYzc1NjY2ODcwMGU1ZWE3YjM2OGEyYjM5Nzk4MjY0Yjc4Y2ZmOGZl" )
