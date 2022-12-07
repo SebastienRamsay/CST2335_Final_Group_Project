@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">电影</string>
+    <string name="title_tag">Favorite</string>
+    <string name="the_walk">The walk</string>
+    <string name="search">search</string>
+    <string name="imdb">imdb</string>
+    <string name="movie_name">name</string>
+</resources>
