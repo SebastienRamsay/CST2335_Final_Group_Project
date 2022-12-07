@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * shared prefrences for surviving rotation changes
+ */
 public class EventViewModel extends ViewModel {
 
     MutableLiveData<List<EventDBObject>> events = new MutableLiveData<>();

@@ -2,4 +2,16 @@
     <string name="app_name">CST2335 Final Group Project</string>
     <string name="searchButton">Search</string>
     <string name="eventSearchText">Event Search</string>
+    <string name="Radius">Radius</string>
+    <string name="City">City</string>
+    <string name="Favourites">Favourites</string>
+    <string name="FavouriteCheckBox">Favourite</string>
+    <string name="StartingDate">Starting Date:</string>
+    <string name="TicketPriceRange">Ticket Price Range:</string>
+    <string name="Name">Name</string>
+    <string name="BuyTickets">But Tickets</string>
+    <string name="event_name">Event Name:</string>
+    <string name="starting_date">Starting Date:</string>
+    <string name="ticket_price">Ticket Price:</string>
+    <string name="successfulSearch">Your search was successful</string>
 </resources>

@@ -10,7 +10,7 @@
         android:id="@+id/favouritesButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Favourites"
+        android:text="@string/Favourites"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="City"
+        android:hint="@string/City"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eventSearchText" />
@@ -31,7 +31,7 @@
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Radius"
+        android:hint="@string/Radius"
         android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/cityEditText"
         app:layout_constraintTop_toTopOf="@+id/cityEditText" />

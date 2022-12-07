@@ -17,6 +17,9 @@ import com.example.cst2335finalgroupproject.databinding.EventDetailsLayoutBindin
 
 import java.util.ArrayList;
 
+/**
+ * fragments information about the events
+ */
 public class EventDetailsFragment extends Fragment {
 
 
@@ -28,7 +31,11 @@ public class EventDetailsFragment extends Fragment {
         this.event = event;
     }
 
-
+    /**
+     * called run when the fragment is created
+     *
+     * @return the application view
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);

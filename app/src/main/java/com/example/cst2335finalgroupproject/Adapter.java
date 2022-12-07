@@ -27,7 +27,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
         this.eventModel = eventModel;
     }
 
-
+    /**
+     * called when the viewHolder is created
+     * @param parent the parent of the view
+     * @param viewType the type of view
+     * @return attatched view
+     */
     @NonNull
     @Override
     public Adapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,16 +43,28 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
         return new viewHolder(view);
     }
 
+    /**
+     * populates the viewHolder
+     * @param holder The row being added
+     * @param position the id of the event to be displayed
+     */
     @Override
     public void onBindViewHolder(@NonNull Adapter.viewHolder holder, int position) {
         holder.eventName.setText(events.get(position).getName());
     }
 
+    /**
+     * gets the number of events in the viewHolder
+     * @return number of events in the viewHolder
+     */
     @Override
     public int getItemCount() {
         return events.size();
     }
 
+    /**
+     * viewHolder class that opens the fragment
+     */
     public class viewHolder extends RecyclerView.ViewHolder {
 
         TextView eventName;
