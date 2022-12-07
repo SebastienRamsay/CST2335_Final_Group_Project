@@ -26,6 +26,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Main class that allows the user to search an api of events.
+ */
 public class EventSearchMain extends AppCompatActivity {
 
     ActivityMainBinding binding;
@@ -41,7 +44,11 @@ public class EventSearchMain extends AppCompatActivity {
     EventDAO eventDAO;
     Bundle savedInstanceState;
 
-
+    /**
+     * sets the toolbar to the toolbar in the xml
+     * @param menu the toolbar menu
+     * @return the created toolbar menu
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -50,28 +57,36 @@ public class EventSearchMain extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    /**
+     *
+     * @param item toolbar being passed into the method
+     * @return recalls itself
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        Intent switchActivityIntent = new Intent();
-
-        switch(item.getItemId()){
-            case R.id.SoccerMain:
-                switchActivityIntent = new Intent(this, SoccerMain.class);
-                startActivity(switchActivityIntent);
-                break;
-            case R.id.PexelsMainActivity:
-                switchActivityIntent = new Intent(this, PexelsMainActivity.class);
-                startActivity(switchActivityIntent);
-                break;
-            default:
-                switchActivityIntent = new Intent(this, EventSearchMain.class);
-                startActivity(switchActivityIntent);
-        }
+//        Intent switchActivityIntent = new Intent();
+//
+//        switch(item.getItemId()){
+//            case R.id.SoccerMain:
+//                switchActivityIntent = new Intent(this, SoccerMain.class);
+//                startActivity(switchActivityIntent);
+//                break;
+//            case R.id.PexelsMainActivity:
+//                switchActivityIntent = new Intent(this, PexelsMainActivity.class);
+//                startActivity(switchActivityIntent);
+//                break;
+//            default:
+//                switchActivityIntent = new Intent(th66666644is, EventSearchMain.class);
+//                startActivity(switchActivityIntent);
+//        }
 
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * runs when the activity is started
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,7 +174,7 @@ public class EventSearchMain extends AppCompatActivity {
                 myAdapter.notifyDataSetChanged();
                 inFavourites = false;
             }
-
+            hideSoftKeyboard(EventSearchMain.this, click);
         });
 
 
@@ -185,18 +200,30 @@ public class EventSearchMain extends AppCompatActivity {
 //        }
 //    }
 
-
+    /**
+     * hides the keyboard.
+     * @param activity current activity
+     * @param view current view
+     */
     public static void hideSoftKeyboard (Activity activity, View view)
     {
         InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
     }
 
+    /**
+     * fetches the information from the api and sends it to a EVENTJSON object
+     */
     private void fetchEvents() {
         RetrofitClient
                 .getRetrofitClient()
                 .getEmbededEvents("https://app.ticketmaster.com/discovery/v2/events.json?apikey=MgaWGVNGvLYPha8sw4Zgz9lIAzOJpT4b&city=" + binding.cityEditText.getText().toString() + "&radius=" + binding.radiusEditText.getText().toString())
                 .enqueue(new Callback<EventJSON>() {
+                    /**
+                     * called when retrofit gets a response from the api
+                      * @param call
+                     * @param response
+                     */
             @Override
             public void onResponse(Call<EventJSON> call, Response<EventJSON> response) {
 
@@ -236,13 +263,23 @@ public class EventSearchMain extends AppCompatActivity {
                         myAdapter.notifyDataSetChanged();
 
 
+                    Context context = getApplicationContext();
+                    CharSequence text = getString(R.string.successfulSearch);
+                    int duration = Toast.LENGTH_SHORT;
 
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
 
 
 
                 }
             }
 
+                    /**
+                     * called when retrofit fails to get a response from the api
+                     * @param call
+                     * @param t
+                     */
             @Override
             public void onFailure(Call<EventJSON> call, Throwable t) {
                 Toast.makeText(EventSearchMain.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
@@ -251,6 +288,9 @@ public class EventSearchMain extends AppCompatActivity {
         });
     }
 
+    /**
+     * gets the savd favourite events from the database and adds them the shared prefrences favourite events.
+     */
     public void getFavouites(){
         try{
             eventModel.favouriteEvents.setValue(eventDAO.getAllEvents());

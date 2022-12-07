@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
+/**
+ * converts a url into a bitmap and then assigns it to an image object
+ */
 public class URLToImage extends AsyncTask<String, Void, Bitmap> {
 
 
@@ -22,6 +25,11 @@ public class URLToImage extends AsyncTask<String, Void, Bitmap> {
     ImageView image;
 
 
+    /**
+     *
+     * @param url the url to turn into a bitmap
+     * @return Bitmap
+     */
     @Override
     protected Bitmap doInBackground(String... url) {
 
@@ -35,6 +43,9 @@ public class URLToImage extends AsyncTask<String, Void, Bitmap> {
         return bitmap;
     }
 
+    /**
+     * sets the bitmap to an image object
+     */
     @Override
     protected void onPostExecute(Bitmap bitmap) {
         super.onPostExecute(bitmap);

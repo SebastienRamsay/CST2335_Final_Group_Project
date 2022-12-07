@@ -3,6 +3,9 @@ package com.example.cst2335finalgroupproject;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * builds the api interface so it can later be used tot get information from the api
+ */
 public class RetrofitClient {
 
     private static final String URL = "https://app.ticketmaster.com/";

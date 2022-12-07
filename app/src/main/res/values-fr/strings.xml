@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Radius">Rayon</string>
+    <string name="eventSearchText">Recherche d\'événement</string>
+    <string name="searchButton">Chercher</string>
+    <string name="app_name">CST2735 Projet de groupe final</string>
+    <string name="City">Ville</string>
+    <string name="Favourites">Favoris</string>
+    <string name="FavouriteCheckBox">Favourite</string>
+    <string name="StartingDate">Date de début:</string>
+    <string name="TicketPriceRange">Fourchette de prix des billets:</string>
+    <string name="Name">Nom</string>
+    <string name="BuyTickets">Acheter des billets</string>
+    <string name="event_name">Nom de l\'événement:</string>
+    <string name="starting_date">Date de début:</string>
+    <string name="ticket_price">Prix ​​du billet:</string>
+    <string name="successfulSearch">Votre recherche a réussi</string>
+</resources>

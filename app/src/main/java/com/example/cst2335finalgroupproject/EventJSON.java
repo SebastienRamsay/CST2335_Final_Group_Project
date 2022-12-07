@@ -3,6 +3,9 @@ package com.example.cst2335finalgroupproject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * class to store information from the api in java class format
+ */
 public class EventJSON {
     private _Embedded _embedded;
 

@@ -8,6 +8,9 @@ import androidx.room.PrimaryKey;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Database object
+ */
 @Entity
 public class EventDBObject {
 

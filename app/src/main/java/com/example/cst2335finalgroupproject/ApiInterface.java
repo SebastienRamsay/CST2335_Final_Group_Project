@@ -11,6 +11,11 @@ import retrofit2.http.Url;
 
 public interface ApiInterface {
 
+    /**
+     * gets events embedded in the api object
+     * @param url the api url to search with
+     * @return returns the api information in java object format
+     */
     @GET
     Call<EventJSON> getEmbededEvents(@Url String url);
 }
