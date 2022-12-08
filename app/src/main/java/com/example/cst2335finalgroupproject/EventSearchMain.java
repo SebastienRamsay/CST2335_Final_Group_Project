@@ -8,7 +8,6 @@ import androidx.room.Room;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,7 +16,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.example.cst2335finalgroupproject.databinding.ActivityMainBinding;
+import com.example.cst2335finalgroupproject.databinding.ActivityEventSearchBinding;
+import com.example.cst2335finalgroupproject.databinding.ActivityEventSearchBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ import retrofit2.Response;
  */
 public class EventSearchMain extends AppCompatActivity {
 
-    ActivityMainBinding binding;
+    ActivityEventSearchBinding binding;
     EventViewModel eventModel;
     Adapter myAdapter;
     EventJSON embeddedEvents = new EventJSON();
@@ -90,11 +90,11 @@ public class EventSearchMain extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_event_search);
         this.savedInstanceState = savedInstanceState;
 
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityEventSearchBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         EventDatabase db = Room.databaseBuilder(getApplicationContext(), EventDatabase.class, "EventDatabase").allowMainThreadQueries().build();
@@ -130,6 +130,7 @@ public class EventSearchMain extends AppCompatActivity {
 
         myAdapter = new Adapter(dbEvents, eventModel);
         binding.eventRecyclerView.setAdapter(myAdapter);
+
 
         binding.searchButton.setOnClickListener(click ->{
             inFavourites = false;
