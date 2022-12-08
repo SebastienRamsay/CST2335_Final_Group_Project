@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-/*
+/**
 this class handles the database things: create database, add/delete an entity
  */
 public class MyDatabase extends SQLiteOpenHelper {
@@ -18,14 +18,14 @@ public class MyDatabase extends SQLiteOpenHelper {
     public static final String COL_ID = "_id";
     public static final String COL_IMAGE_URL = "MAGE_URL";
 
-    /*
+    /**
     class constructor
      */
     public MyDatabase(@Nullable Context context) {
         super(context, DATABASE_NAME, null, VERSION_NUM);
     }
 
-    /*
+    /**
     creates the database
      */
     @Override
@@ -34,7 +34,7 @@ public class MyDatabase extends SQLiteOpenHelper {
                 COL_IMAGE_URL + " text);");
     }
 
-    /*
+    /**
     upgrades the database
     */
     @Override
@@ -43,7 +43,7 @@ public class MyDatabase extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    /*
+    /**
     downgrade the database
      */
     @Override

@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-/*
+/**
 * this is the main activity which will show the search results
  */
 public class PexelsMainActivity extends BaseActivity implements ItemListener {
@@ -72,7 +72,7 @@ public class PexelsMainActivity extends BaseActivity implements ItemListener {
         showLastSearchQuery();
     }
 
-    /*
+    /**
     *     show the last search query
      */
     private void showLastSearchQuery() {
@@ -150,7 +150,7 @@ public class PexelsMainActivity extends BaseActivity implements ItemListener {
         queue.add(stringRequest);
     }
 
-    /*
+    /**
     *     initialize the UI elements
      */
     private void initView() {
@@ -200,7 +200,7 @@ public class PexelsMainActivity extends BaseActivity implements ItemListener {
     }
 
 
-    /*
+    /**
     *     implement ItemListener interface
     *     to get the listview row click event
      */
@@ -215,7 +215,7 @@ public class PexelsMainActivity extends BaseActivity implements ItemListener {
     }
 
 
-    /*
+    /**
     *     this method is not needed here
     *     just leave it empty
      */

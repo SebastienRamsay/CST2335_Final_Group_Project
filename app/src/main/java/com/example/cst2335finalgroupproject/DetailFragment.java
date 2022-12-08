@@ -30,7 +30,7 @@ import java.io.IOException;
 import java.net.URL;
 
 
-/*
+/**
 this fragment show the datamodel details
  */
 public class DetailFragment extends Fragment {
@@ -42,7 +42,7 @@ public class DetailFragment extends Fragment {
 
     private DataModel mDataModel;
 
-    /*
+    /**
     this method makes an instance of this fragment
      */
     public static DetailFragment newInstance(DataModel dataModel) {
@@ -53,7 +53,7 @@ public class DetailFragment extends Fragment {
         return fragment;
     }
 
-    /*
+    /**
     this method creates the fragment
      */
     @Override
@@ -64,7 +64,7 @@ public class DetailFragment extends Fragment {
         }
     }
 
-    /*
+    /**
     this method creates the view of the fragment
      */
     @Override
@@ -109,7 +109,7 @@ public class DetailFragment extends Fragment {
         return view;
     }
 
-    /*
+    /**
     this method saves the dataModel to the sqlite database and saves the image to the local storage
      */
     private void saveToDatabase(DataModel dataModel) {
@@ -126,7 +126,7 @@ public class DetailFragment extends Fragment {
 
 
 
-    /*
+    /**
     this inner class handle saving the image to the local storage in another thread
      */
     class SaveImageLocalStorage extends AsyncTask<DataModel, Void, Void> {
@@ -138,7 +138,7 @@ public class DetailFragment extends Fragment {
             mContext = context;
         }
 
-        /*
+        /**
         this method saving the image to the local storage in the background thread
          */
         protected Void doInBackground(DataModel... dataModels) {
@@ -156,7 +156,7 @@ public class DetailFragment extends Fragment {
             return null;
         }
 
-        /*
+        /**
         this method calls after saving the image to the local storage
          */
         @Override
@@ -166,7 +166,7 @@ public class DetailFragment extends Fragment {
 
         }
 
-        /*
+        /**
         this method saving the image to the local storage
         */
         private void saveToInternalStorage(Bitmap bitmapImage, DataModel model) {

@@ -37,7 +37,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     // a constant for SharedPreferences
     protected final String PREF_LAST_SEARCH_QUERY = "PREF_LAST_SEARCH_QUERY";
 
-    /*
+    /**
     * create the baseActivity
      */
     @Override
@@ -68,7 +68,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    /*
+    /**
     * change toolbar title depend on activity name
      */
     private void changeToolbarTitle() {
@@ -84,7 +84,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    /*
+    /**
     * this method calls whenever user click on an item of navigation drawer
      */
     @Override
@@ -116,7 +116,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    /*
+    /**
     * this method calls whenever user click on toolbar icon
      */
     @Override
@@ -159,7 +159,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
-    /*
+    /**
     * this method initialize the contents of the Activity's standard options menu.
      */
     @Override
