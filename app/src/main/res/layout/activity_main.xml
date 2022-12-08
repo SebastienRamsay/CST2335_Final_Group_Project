@@ -17,32 +17,36 @@
 
     <EditText
         android:id="@+id/cityEditText"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_width="132dp"
+        android:layout_height="43dp"
+        android:layout_marginEnd="5dp"
         android:ems="10"
+        android:gravity="center"
         android:hint="@string/City"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventSearchText" />
+        app:layout_constraintEnd_toStartOf="@+id/radiusEditText"
+        app:layout_constraintTop_toTopOf="@+id/radiusEditText" />
 
     <EditText
         android:id="@+id/radiusEditText"
-        android:layout_width="125dp"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
+        android:gravity="center"
         android:hint="@string/Radius"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/cityEditText"
-        app:layout_constraintTop_toTopOf="@+id/cityEditText" />
+        app:layout_constraintEnd_toEndOf="@+id/eventSearchText"
+        app:layout_constraintStart_toStartOf="@+id/eventSearchText"
+        app:layout_constraintTop_toBottomOf="@+id/eventSearchText" />
 
     <Button
         android:id="@+id/searchButton"
-        android:layout_width="102dp"
-        android:layout_height="42dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:text="@string/searchButton"
         app:layout_constraintBottom_toBottomOf="@+id/radiusEditText"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/radiusEditText"
         app:layout_constraintTop_toTopOf="@+id/radiusEditText" />
 
@@ -50,7 +54,7 @@
         android:id="@+id/eventSearchText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="60dp"
         android:text="@string/eventSearchText"
         android:textSize="32dp"
         app:layout_constraintEnd_toEndOf="parent"
