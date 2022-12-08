@@ -24,6 +24,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Displays the current soccer teams that are playing right now
+ */
 public class SoccerMain extends AppCompatActivity {
     TeamLayoutBinding binding2;
     SoccerLayoutBinding binding;
@@ -34,6 +37,10 @@ public class SoccerMain extends AppCompatActivity {
     LinearLayoutManager layoutManager;
     SharedPreferences prefs;
 
+    /**
+     * Creates the soccer layout view
+     * @param savedInstanceState  passing data between various Android activities.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +80,9 @@ public class SoccerMain extends AppCompatActivity {
         });
     }
 
+    /**
+     * Gets the data from the api
+     */
     private void fetchEvents() {
         System.out.println("hjhjjhjjjjkdkdkdh");
         SoccerRetrofitClient

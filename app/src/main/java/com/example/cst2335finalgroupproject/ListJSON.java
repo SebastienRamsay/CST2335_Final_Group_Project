@@ -5,6 +5,9 @@ import android.app.ListActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Stores the information from the api in java class format.
+ */
 public class ListJSON {
 
         private _Embedded _embedded;
