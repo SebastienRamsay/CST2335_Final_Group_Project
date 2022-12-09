@@ -5,23 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.example.cst2335finalgroupproject.databinding.WatchmatchlayoutBinding;
 
 /**
- * This class creates the view where users can watch the game highlights of their selected matches
- * @see android.content.ComponentCallbacks
- * @see android.view.View.OnCreateContextMenuListener
- * @see androidx.fragment.app.Fragment
- * @see androidx.activity.result.ActivityResultCaller
- * @see androidx.lifecycle.HasDefaultViewModelProviderFactory
- * @see androidx.lifecycle.LifecycleOwner
- * @see androidx.lifecycle.ViewModelStoreOwner
- * @see androidx.savedstate.SavedStateRegistryOwner
+ * The class SoccerwatchFragment is a Fragment information for team match names
  */
 public class SoccerwatchFragment extends Fragment {
     WatchmatchlayoutBinding binding;
