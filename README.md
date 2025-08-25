@@ -1,9 +1,11 @@
-This is was a group project complete during the Computer Programming course at Alogonquin College Ottawa.
+# Group Android Application Project
 
-The Project consists of 4 seperate group members work.
-Each group member was tasked with designing and creating an android application given a topic and list of required implementations.
-Each group member had their own topic and list of required implementations.
-When all the project were complete we were then tasked with combining the applications into one larger application with all the features implemented.
-Once Complete the application was marked as a whole and by each individual group members section of the app.
+This was a **group project** completed during the **Computer Programming** course at **Algonquin College, Ottawa**.
 
-This project was created using Android Studio in Java.
+The project consisted of work from **four separate group members**.  
+Each member was tasked with designing and creating an **Android application** based on a unique topic and a list of required implementations.
+
+Once all individual projects were complete, we combined them into **one larger application** containing all features.  
+The final application was graded both as a whole and by each individual member’s contributions.
+
+This project was created using **Android Studio** in **Java**.
